@@ -250,12 +250,19 @@ python3 tools/build_video.py --script full --shot 340   # one frame, for tweakin
 ## Working on your own laptop
 
 `docs/LAPTOP_SETUP.md` covers installing Keil C51, opening the 26 ready made
-uVision projects, building to a `.hex` file, and flashing the AT89S52. It also
-covers three things that reliably waste a day:
+uVision projects, and building to a `.hex` file. `docs/FLASHING.md` then covers
+getting that file into the chip: the six ISP wires, an Arduino as ISP, USBasp,
+ProgISP, and a fault table. Together they cover four things that reliably waste
+a day:
 
 - The free Keil C51 evaluation version is capped at **2 KB of object code** and
-  links at offset `0x0800`. The largest program here is about 3.4 KB, so the
-  later programs will not build without a licence.
+  links at offset `0x0800`. Program 01 measures `data=30.0 code=1129` on that
+  toolchain, and every program carries the whole of `board.h`, so the later ones
+  sit close to the cap. Enabling the LX51 linker with `REMOVEUNUSED` drops the
+  unused drivers and buys a lot of room.
+- The `0x0800` offset is harmless on an 8 KB part. The linker plants an `LJMP`
+  at address 0x0000, so the chip boots and runs normally. It only matters on a
+  2 KB device such as an AT89C2051.
 - A **stock USBasp cannot program an AT89S52**. AVR chips reset on a low signal
   and the 8051 resets on a high one, so stock firmware never gets the chip into
   programming mode. Use an Arduino as ISP or a dedicated 8051 programmer.
