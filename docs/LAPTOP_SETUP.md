@@ -143,12 +143,13 @@ the file. The projects already have the right settings:
 | Include path | `..\inc` |
 | Optimisation level | 8 |
 
-**One thing is not set and you should set it.** The crystal frequency is not
-stored in these project files, so uVision will default to 12 MHz. Everything in
-this project is timed off 11.0592 MHz, and the baud rate calculation depends on
-it exactly. Go to **Options for Target > Target** and set **Xtal (MHz)** to
-`11.0592`. If you forget, the simulator's timing will be wrong and any
-calculated delays will be off by about 8 percent.
+**The crystal frequency is already set.** Every project file in `firmware/keil`
+carries `CLOCK(11059200)` in its device definition, so uVision opens with Xtal
+at 11.0592 MHz and you do not need to touch it. You only have to set Xtal by
+hand if you create a brand new project from scratch, or if you retarget an
+existing one to a different device. To confirm it: **Options for Target >
+Target** and check that **Xtal (MHz)** reads `11.0592`. Everything here is timed
+off that frequency, and the UART baud rate depends on it exactly.
 
 Keep the folder structure as it is. The projects reach the shared header through
 `..\inc`, so `board.h` must stay one directory up from the project files.
@@ -312,10 +313,10 @@ open the same, unmodified `.c` files in Keil for the real build.
 **In the lab:**
 
 1. Pull your latest commit onto a licensed machine.
-2. Open the matching `_AT89S52.uvprojx`, set Xtal to 11.0592 if it is not
-   already, and do **Project > Rebuild All Target Files**. A clean rebuild
-   matters: stale object files compiled by an evaluation version are a common
-   cause of a mysterious `L250`.
+2. Open the matching `_AT89S52.uvprojx` and do **Project > Rebuild All Target
+   Files**. Xtal is already correct in these projects. A clean rebuild matters:
+   stale object files compiled by an evaluation version are a common cause of a
+   mysterious `L250`.
 3. Flash `Objects\<name>.hex` to the chip.
 4. Run the matching test from `hardware/TESTING.md`.
 

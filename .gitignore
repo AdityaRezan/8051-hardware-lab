@@ -22,3 +22,10 @@ Listings/
 docs/guide/video/_narration.wav
 docs/guide/video/_shot.png
 docs/guide/video/_small.mp4
+
+# build-all-hex generated projects and logs
+firmware/keil/*_AT89S52_s.uvprojx
+firmware/keil/*_AT89S52_x.uvprojx
+firmware/keil/*_AT89S52_sx.uvprojx
+firmware/keil/Logs/
+firmware/hex/

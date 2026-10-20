@@ -62,6 +62,65 @@ reason the tools refuse anything over 2048 bytes with
 
 Nothing here is broken. The HEX is real and will run.
 
+### 2.4 Build every program in one go, before you go to the lab
+
+There are 13 programs and 13 ready made projects in `firmware\keil`, one `.c`
+file each, with the device, the crystal and the include path already set. Do not
+build them by hand one at a time.
+
+Double click `tools\Build-All-HEX.bat`. It builds all 13, reads the size out of
+each build log, checks each HEX has a valid reset jump, and copies the finished
+files into `firmware\hex`. It prints a table like this:
+
+```
+  PROGRAM              CODE    DATA     ERR    WARN  HEX         STATE
+  --------------------------------------------------------------------
+  01_led_blink         1129    30.0       0      20  ok          OK
+  02_led_patterns      1180    30.0       0      18  ok          OK
+  ...
+```
+
+The STATE column is the one that matters:
+
+| State | Meaning | What to do |
+|---|---|---|
+| `OK` | Built, fits under 2048, HEX verified | Nothing. Ready to flash. |
+| `OVER LIMIT` | Built cleanly but larger than 2048 bytes | Try the two switches below |
+| `ERRORS` | Source or configuration problem | Open that project in uVision and build it to read the message |
+| `BAD HEX` | Linked but the HEX has no reset jump | Almost always the 0x0800 offset. Rebuild from clean |
+| `FATAL` | `L250` or a linker licence error | See the two switches below |
+
+If any program comes back `OVER LIMIT`, run the same tool with the size
+switches, cheapest first:
+
+```
+tools\Build-All-HEX.bat
+```
+
+then edit the shortcut, or from PowerShell:
+
+```
+.\build_all_hex.ps1 -Small
+.\build_all_hex.ps1 -Small -LX51
+```
+
+`-Small` sets optimisation level 9 and favours size instead of speed. It is a
+safe, documented setting and usually saves 5 to 15 percent on its own.
+
+`-LX51` switches to the extended linker and adds `REMOVEUNUSED`, which deletes
+every driver function the program never calls. This is what recovers the most
+space, because `board.h` currently puts all 26 drivers into every program. It is
+the one setting that may not be available to you: with some licence levels the
+extended linker returns `L257: Extended Linker Requires Upgrade to PK51`. If you
+see that, drop `-LX51` and use `-Small` only.
+
+Failing both, the last resort is to trim `firmware\inc\board.h` by hand and
+delete the drivers a given program does not use.
+
+When the table is green, copy the whole `firmware\hex` folder to a pen drive.
+That and this document are the only two things you need in the lab. The lab
+machine does not need Keil installed at all.
+
 ---
 
 ## 3. Prepare the board
