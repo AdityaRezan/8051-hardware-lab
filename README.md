@@ -206,18 +206,33 @@ Rebuild with `python3 tools/build_guide_pdf.py`. It needs `weasyprint` and `pill
 
 ## Video
 
-`docs/guide/video/8051_Assembly_and_Run.mp4` is a five minute twelve second,
-1280 by 720, narrated walkthrough with burned in captions. It covers the
-constraint and the shared bus fix, all ten assembly stages, and the board
-running: the LED test, the command shell, the self test, the zone monitor and
-the emergency stop.
+There are two narrated videos, both 1280 by 720 at 24 fps with burned in
+captions, so both read with the sound off.
+
+| Video | Length | What it covers |
+|---|---|---|
+| `8051_Start_To_Finish.mp4` | 6:43 | The whole project from an empty desk: installing Keil on the laptop, `board.h` and the pin map, writing and building to a `.hex` file, all ten assembly stages, then flashing over SPI and running the system |
+| `8051_Assembly_and_Run.mp4` | 5:13 | Assembly focused cut: the 54 versus 32 pin constraint, the shared bus fix, the ten build stages, and the board running |
+
+Start with `8051_Start_To_Finish.mp4` if you want the complete story. The
+shorter one is the better pick if you only have five minutes.
+
+Both videos show real source code on screen. The excerpts in the code panels are
+read out of `firmware/inc/board.h` and `firmware/src/12_industrial_monitor.c` at
+build time, so they cannot drift from the actual firmware.
 
 | File | What it is |
 |---|---|
-| `8051_Assembly_and_Run.mp4` | the finished video |
+| `8051_Start_To_Finish.mp4` | the full start to finish video |
+| `8051_Assembly_and_Run.mp4` | the shorter assembly cut |
 | `SHOOTING_SCRIPT.md` | shot by shot script for filming the real board to the same narration |
-| `audio/` | the ten recorded narration clips, one per scene |
-| `frames/` | the six generated board images used as source frames |
+| `audio/`, `audio_full/` | recorded narration clips, one per scene, per video |
+| `frames/` | generated board and bench images used as source frames |
+
+The board and bench images are generated: they show the build rather than
+photograph it, because no camera was available. `SHOOTING_SCRIPT.md` has the
+timecodes, camera setup and cut list needed to replace them with real footage of
+the bench without re-recording anything.
 
 The board images are generated: they show the build rather than photograph it,
 because no camera was available. `SHOOTING_SCRIPT.md` has the timecodes, camera
@@ -227,8 +242,9 @@ without re-recording anything.
 Rebuild with:
 
 ```
-python3 tools/build_video.py            # full render, about four minutes
-python3 tools/build_video.py --shot 95  # single frame to _shot.png, for tweaking
+python3 tools/build_video.py                    # 5:13 assembly cut, about 4 min
+python3 tools/build_video.py --script full      # 6:43 full start to finish, about 5 min
+python3 tools/build_video.py --script full --shot 340   # one frame, for tweaking
 ```
 
 ## Working on your own laptop

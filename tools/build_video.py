@@ -16,15 +16,24 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from video_script import (SCENES, RESULT_CARDS, END_LINES, PROBLEM_ROWS,
+from video_script import (RESULT_CARDS, END_LINES, PROBLEM_ROWS,
                           TITLE_MAIN, TITLE_SUB)
+
+SCRIPT_NAME = "video_script"
+if "--script" in sys.argv:
+    SCRIPT_NAME = "video_script_" + sys.argv[sys.argv.index("--script") + 1]
+SCRIPT_MOD = __import__(SCRIPT_NAME)
+SCENES = SCRIPT_MOD.SCENES
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 VDIR = os.path.join(ROOT, "docs", "guide", "video")
 IMAGES = os.path.join(ROOT, "docs", "guide", "images")
 FRAMES = os.path.join(VDIR, "frames")
-AUDIO = os.path.join(VDIR, "audio")
-OUT = os.path.join(VDIR, "8051_Assembly_and_Run.mp4")
+# each scene script keeps its own narration clips so the two videos
+# never overwrite one another
+AUDIO = os.path.join(VDIR, "audio" if SCRIPT_NAME == "video_script"
+                     else "audio_" + SCRIPT_NAME.replace("video_script_", ""))
+OUT = os.path.join(VDIR, getattr(SCRIPT_MOD, "OUT", "output.mp4"))
 
 W, H = 1280, 720
 FPS = 24
@@ -411,6 +420,326 @@ def render_grid(img, beat, f):
         img.paste(lay, (0, 0), lay)
 
 
+
+# ------------------------------------------------- syntax highlighting
+C_KW = (86, 156, 214)
+C_TYPE = (78, 201, 176)
+C_PP = (198, 146, 234)
+C_NUM = (181, 206, 168)
+C_STR = (206, 145, 120)
+C_DEF = (212, 212, 212)
+C_CMT = (106, 153, 85)
+C_LN = (92, 92, 98)
+
+KEYWORDS = set("if else return while for do switch case break continue "
+               "volatile static const struct sizeof goto".split())
+TYPES = set("void unsigned char int long bit sfr sbit code data idata "
+            "xdata interrupt using".split())
+TOKEN = re.compile(r'"[^"]*"|0[xX][0-9A-Fa-f]+[UL]*|\b\d+\b|[A-Za-z_]\w*')
+
+
+def hl_runs(line):
+    """Split one C line into (text, colour) runs."""
+    runs = []
+    pos = 0
+    m = re.match(r"^(\s*#\s*\w+)", line)
+    if m:
+        runs.append((m.group(1), C_PP))
+        pos = m.end()
+    ci = line.find("//", pos)
+    body, cmt = (line[pos:ci], line[ci:]) if ci >= 0 else (line[pos:], "")
+    cur = 0
+    for m in TOKEN.finditer(body):
+        if m.start() > cur:
+            runs.append((body[cur:m.start()], C_DEF))
+        t = m.group(0)
+        if t.startswith('"'):
+            col = C_STR
+        elif t[:2].lower() == "0x" or t[0].isdigit():
+            col = C_NUM
+        elif t in TYPES:
+            col = C_TYPE
+        elif t in KEYWORDS:
+            col = C_KW
+        else:
+            col = C_DEF
+        runs.append((t, col))
+        cur = m.end()
+    if cur < len(body):
+        runs.append((body[cur:], C_DEF))
+    if cmt:
+        runs.append((cmt, C_CMT))
+    return runs
+
+
+def _win(d, box, title, fill=(30, 30, 30), bar=(45, 45, 48), edge=(64, 68, 74)):
+    x0, y0, x1, y1 = box
+    rrect(d, (x0, y0, x1, y1), 9, fill=fill, outline=edge, width=2)
+    rrect(d, (x0, y0, x1, y0 + 32), 9, fill=bar)
+    d.rectangle((x0, y0 + 22, x1, y0 + 32), fill=bar)
+    d.text((x0 + 15, y0 + 16), title, font=font(F_REG, 13),
+           fill=(196, 196, 200), anchor="lm")
+
+
+def panel_roadmap(img, beat, f):
+    d = ImageDraw.Draw(img)
+    d.rectangle((0, 0, W, H - CAP_H), fill=BG)
+    d.text((90, 62), "ONE PROJECT, THREE ACTS", font=font(F_BOLD, 30), fill=TEXT)
+    d.rectangle((90, 108, 300, 112), fill=BLUE)
+    rows = beat.get("rows", [])
+    rh = 122
+    for i, row in enumerate(rows):
+        num, name, sub1, sub2 = row
+        a = clamp((f - 0.10 - i * 0.16) / 0.20, 0, 1)
+        if a <= 0:
+            continue
+        y = 164 + i * rh
+        col = [BLUE, EMER, AMBER][i % 3]
+        rrect(d, (90, y, W - 90, y + rh - 18), 10, fill=blend(BG, SURF, 0.92 * a))
+        d.rectangle((90, y, 98, y + rh - 18), fill=blend(BG, col, a))
+        d.ellipse((118, y + 28, 168, y + 78), fill=blend(BG, col, a))
+        d.text((143, y + 53), num, font=font(F_BOLD, 24),
+               fill=blend(BG, (255, 255, 255), a), anchor="mm")
+        d.text((194, y + 32), name, font=font(F_BOLD, 25),
+               fill=blend(BG, TEXT, a), anchor="lm")
+        d.text((194, y + 66), sub1, font=font(F_REG, 17),
+               fill=blend(BG, MUTED, a), anchor="lm")
+        d.text((194, y + 88), sub2, font=font(F_REG, 16),
+               fill=blend(BG, DIM, a), anchor="lm")
+
+
+def panel_ide(img, beat, f):
+    d = ImageDraw.Draw(img)
+    d.rectangle((0, 0, W, H - CAP_H), fill=BG)
+    x0, y0, x1, y1 = 62, 44, W - 62, H - CAP_H - 26
+    _win(d, (x0, y0, x1, y1), beat.get("title", "uVision5"))
+    tf = font(F_REG, 13)
+    tab = beat.get("tab", "file.c")
+    tw = d.textlength(tab, font=tf) + 28
+    rrect(d, (x0 + 10, y0 + 32, x0 + 10 + tw, y0 + 58), 5, fill=(30, 30, 30))
+    d.text((x0 + 24, y0 + 45), tab, font=tf, fill=(236, 236, 240), anchor="lm")
+    d.rectangle((x0, y0 + 58, x1, y0 + 59), fill=(64, 68, 74))
+
+    lines = beat["lines"]
+    hlset = set(beat.get("hl", []))
+    lh = 21
+    fnt = font(F_MONO, 15)
+    nf = font(F_MONO, 13)
+    top = y0 + 68
+    vis = max(1, int((y1 - top - 10) // lh))
+    smax = max(0, len(lines) - vis)
+    sf = clamp((f - 0.06) / 0.88, 0, 1)
+    first = int(round(smax * ease(sf)))
+    gx, cx = x0 + 16, x0 + 70
+    xmax = x1 - 16
+    for i in range(vis):
+        idx = first + i
+        if idx >= len(lines):
+            break
+        yy = top + i * lh
+        if idx in hlset:
+            d.rectangle((cx - 8, yy - 1, x1 - 10, yy + lh - 3), fill=(38, 58, 92))
+        d.text((gx, yy + lh / 2), "%3d" % (idx + 1), font=nf, fill=C_LN,
+               anchor="lm")
+        x = cx
+        for txt, col in hl_runs(lines[idx]):
+            if x > xmax:
+                break
+            d.text((x, yy + lh / 2), txt, font=fnt, fill=col, anchor="lm")
+            x += d.textlength(txt, font=fnt)
+
+
+def panel_build(img, beat, f):
+    d = ImageDraw.Draw(img)
+    d.rectangle((0, 0, W, H - CAP_H), fill=BG)
+    x0, y0, x1, y1 = 150, 118, W - 150, H - CAP_H - 86
+    _win(d, (x0, y0, x1, y1), beat.get("title", "Build Output"),
+         fill=(24, 24, 27), bar=(45, 45, 48))
+    lines = beat["lines"]
+    mf = font(F_MONO, 19)
+    top = y0 + 52
+    lh = 40
+    per = 0.60 / max(1, len(lines))
+    for i, ln in enumerate(lines):
+        a = clamp((f - 0.06 - i * per) / 0.10, 0, 1)
+        if a <= 0:
+            continue
+        if "Error(s)" in ln:
+            col = (120, 220, 150)
+        elif "Size" in ln or "hex" in ln:
+            col = (150, 210, 255)
+        else:
+            col = (198, 203, 210)
+        d.text((x0 + 22, top + i * lh), ln, font=mf,
+               fill=blend((24, 24, 27), col, a), anchor="lm")
+    a = clamp((f - 0.74) / 0.14, 0, 1)
+    if a > 0:
+        d.rectangle((x0 + 1, y1 - 34, x1 - 1, y1 - 1),
+                    fill=blend((24, 24, 27), (16, 82, 50), a))
+        d.text((x0 + 22, y1 - 18), "0 Error(s), 0 Warning(s).",
+               font=font(F_BOLD, 16), fill=blend((24, 24, 27), (178, 255, 205), a),
+               anchor="lm")
+
+
+def panel_desktop(img, beat, f):
+    d = ImageDraw.Draw(img)
+    d.rectangle((0, 0, W, H - CAP_H), fill=BG)
+    x0, y0, x1, y1 = 170, 92, W - 170, H - CAP_H - 62
+    rrect(d, (x0, y0, x1, y1), 9, fill=(249, 249, 250), outline=(188, 190, 196),
+          width=2)
+    rrect(d, (x0, y0, x1, y0 + 40), 9, fill=(237, 238, 242))
+    d.rectangle((x0, y0 + 30, x1, y0 + 40), fill=(237, 238, 242))
+    d.text((x0 + 16, y0 + 20), beat.get("title", "Objects"),
+           font=font(F_BOLD, 15), fill=(48, 50, 56), anchor="lm")
+    rows = beat["lines"]
+    lh = 46
+    top = y0 + 54
+    for i, ln in enumerate(rows):
+        a = clamp((f - i * 0.07) / 0.15, 0, 1)
+        if a <= 0:
+            continue
+        yy = top + i * lh
+        rrect(d, (x0 + 14, yy, x1 - 14, yy + 38), 5,
+              fill=blend((249, 249, 250), (242, 247, 255), a))
+        d.rectangle((x0 + 26, yy + 9, x0 + 46, yy + 29),
+                    fill=blend((249, 249, 250), (58, 118, 216), a),
+                    outline=blend((249, 249, 250), (38, 78, 168), a))
+        d.text((x0 + 58, yy + 19), ln, font=font(F_MONO, 16),
+               fill=blend((249, 249, 250), (34, 38, 48), a), anchor="lm")
+
+
+def panel_notice(img, beat, f):
+    d = ImageDraw.Draw(img)
+    d.rectangle((0, 0, W, H - CAP_H), fill=BG)
+    bw, bh = 950, 300
+    x0, y0 = (W - bw) / 2, (H - CAP_H - bh) / 2 - 6
+    rrect(d, (x0, y0, x0 + bw, y0 + bh), 12, fill=(44, 31, 12), outline=AMBER,
+          width=3)
+    d.rectangle((x0, y0, x0 + 8, y0 + bh), fill=AMBER)
+    tracked(d, (x0 + 36, y0 + 34), beat.get("title", "NOTE"), font(F_BOLD, 15),
+            AMBER, 1.8, anchor="lm")
+    d.text((x0 + 36, y0 + 78), beat.get("head", ""), font=font(F_BOLD, 29),
+           fill=(254, 243, 199), anchor="lm")
+    bf = font(F_REG, 21)
+    for i, ln in enumerate(wrap(d, beat.get("body", ""), bf, bw - 74)):
+        a = clamp((f - 0.26 - i * 0.12) / 0.24, 0, 1)
+        d.text((x0 + 36, y0 + 142 + i * 34), ln, font=bf,
+               fill=blend((44, 31, 12), (226, 202, 142), a), anchor="lm")
+
+
+def panel_zones(img, beat, f):
+    d = ImageDraw.Draw(img)
+    d.rectangle((0, 0, W, H - CAP_H), fill=BG)
+    d.text((110, 66), "THREE COMPARISONS", font=font(F_BOLD, 30), fill=TEXT)
+    d.rectangle((110, 112, 292, 116), fill=EMER)
+    rows = beat.get("rows", [])
+    rh = 76
+    cols = [150, 330, 590, 880]
+    for i, row in enumerate(rows):
+        a = clamp((f - 0.14 - i * 0.14) / 0.20, 0, 1)
+        if a <= 0:
+            continue
+        name, cond, temp, act = row
+        y = 158 + i * rh
+        col = [EMER, AMBER, RED][i % 3]
+        rrect(d, (110, y, W - 110, y + rh - 14), 8,
+              fill=blend(BG, SURF, 0.9 * a))
+        d.rectangle((110, y, 117, y + rh - 14), fill=blend(BG, col, a))
+        d.text((cols[0], y + 32), name, font=font(F_BOLD, 22),
+               fill=blend(BG, col, a), anchor="lm")
+        d.text((cols[1], y + 32), cond, font=font(F_MONO, 19),
+               fill=blend(BG, BLUE_LT, a), anchor="lm")
+        d.text((cols[2], y + 32), temp, font=font(F_REG, 20),
+               fill=blend(BG, TEXT, a), anchor="lm")
+        d.text((cols[3], y + 32), act, font=font(F_REG, 19),
+               fill=blend(BG, MUTED, a), anchor="lm")
+
+
+def panel_wiring(img, beat, f):
+    d = ImageDraw.Draw(img)
+    d.rectangle((0, 0, W, H - CAP_H), fill=BG)
+    d.text((92, 52), "SIX WIRES, PROGRAMMED IN CIRCUIT",
+           font=font(F_BOLD, 25), fill=TEXT)
+    d.rectangle((92, 92, 300, 96), fill=BLUE)
+    px0, py0, pw, ph = 96, 176, 252, 300
+    rrect(d, (px0, py0, px0 + pw, py0 + ph), 8, fill=SURF, outline=BLUE, width=2)
+    d.text((px0 + pw / 2, py0 + 32), "PROGRAMMER", font=font(F_BOLD, 18),
+           fill=TEXT, anchor="mm")
+    d.text((px0 + pw / 2, py0 + 60), "Arduino ISP or 8051 ISP",
+           font=font(F_REG, 13), fill=MUTED, anchor="mm")
+    cx0, cy0, cw2, ch2 = 738, 156, 350, 340
+    rrect(d, (cx0, cy0, cx0 + cw2, cy0 + ch2), 8, fill=(23, 25, 30),
+          outline=(118, 126, 138), width=2)
+    rrect(d, (cx0 + 58, cy0 + 44, cx0 + cw2 - 58, cy0 + ch2 - 44), 4,
+          fill=(35, 38, 44))
+    d.text((cx0 + cw2 / 2, cy0 + ch2 / 2 - 8), "AT89S52",
+           font=font(F_BOLD, 23), fill=(202, 210, 222), anchor="mm")
+    d.text((cx0 + cw2 / 2, cy0 + ch2 / 2 + 26), "40-pin DIP",
+           font=font(F_REG, 14), fill=MUTED, anchor="mm")
+    wires = beat.get("wires", [])
+    for i, w in enumerate(wires):
+        sig, pin, num, col = w
+        a = clamp((f - 0.10 - i * 0.085) / 0.16, 0, 1)
+        if a <= 0:
+            continue
+        c = blend(BG, col, a)
+        ly = py0 + 96 + i * 33
+        ry = cy0 + 66 + i * 42
+        d.text((px0 + pw - 16, ly), sig, font=font(F_BOLD, 15), fill=c,
+               anchor="rm")
+        d.ellipse((px0 + pw - 9, ly - 4, px0 + pw + 1, ly + 6), fill=c)
+        d.text((cx0 + 24, ry), "%s   pin %s" % (pin, num),
+               font=font(F_MONO, 14), fill=c, anchor="lm")
+        d.ellipse((cx0 - 11, ry - 5, cx0 - 1, ry + 5), fill=c)
+        pts = []
+        for k in range(37):
+            t = k / 36.0
+            pts.append((lerp(px0 + pw + 1, cx0 - 1, t), lerp(ly, ry, ease(t))))
+        d.line(pts, fill=c, width=3, joint="curve")
+
+
+FLASH_LINES = [
+    "$ avrdude -c arduino -p 8052 -P COM3 -b 19200"
+    " -U flash:w:12_industrial_monitor.hex:i",
+    "",
+    "avrdude: AVR device initialized and ready to accept instructions",
+    "avrdude: device signature = 0x1e5206 (AT89S52)",
+    "avrdude: reading input file 12_industrial_monitor.hex",
+    "avrdude: writing flash (3402 bytes)",
+    "avrdude: 3402 bytes of flash written",
+    "avrdude: verifying flash memory against input file",
+    "avrdude: 3402 bytes of flash verified",
+    "avrdude done.  Thank you.",
+]
+
+
+def panel_flash(img, beat, f):
+    d = ImageDraw.Draw(img)
+    d.rectangle((0, 0, W, H - CAP_H), fill=BG)
+    x0, y0, x1, y1 = 128, 122, W - 128, H - CAP_H - 74
+    rrect(d, (x0, y0, x1, y1), 9, fill=(9, 14, 26), outline=BORDER, width=2)
+    d.text((x0 + 20, y0 + 26), "COMMAND PROMPT", font=font(F_BOLD, 14),
+           fill=MUTED, anchor="lm")
+    d.rectangle((x0, y0 + 44, x1, y0 + 45), fill=BORDER)
+    mf = font(F_MONO, 16)
+    lh = 27
+    top = y0 + 60
+    lines = beat.get("lines", FLASH_LINES)
+    per = 0.60 / max(1, len(lines))
+    for i, ln in enumerate(lines):
+        a = clamp((f - 0.05 - i * per) / 0.09, 0, 1)
+        if a <= 0:
+            continue
+        if "verified" in ln or "Thank you" in ln or "written" in ln:
+            col = (120, 220, 150)
+        elif ln.startswith("$") or ln.startswith(" "):
+            col = (150, 210, 255)
+        else:
+            col = (198, 203, 210)
+        d.text((x0 + 22, top + i * lh), ln, font=mf,
+               fill=blend((9, 14, 26), col, a), anchor="lm")
+
+
 # ------------------------------------------------------------------ beats
 
 def render_beat(beat, u, frame):
@@ -439,6 +768,22 @@ def render_beat(beat, u, frame):
             panel_results(d, u)
         elif p == "end":
             panel_end(d, u)
+        elif p == "roadmap":
+            panel_roadmap(img, beat, u)
+        elif p == "ide":
+            panel_ide(img, beat, u)
+        elif p == "build":
+            panel_build(img, beat, u)
+        elif p == "desktop":
+            panel_desktop(img, beat, u)
+        elif p == "notice":
+            panel_notice(img, beat, u)
+        elif p == "zones":
+            panel_zones(img, beat, u)
+        elif p == "wiring":
+            panel_wiring(img, beat, u)
+        elif p == "flash":
+            panel_flash(img, beat, u)
     return img
 
 
@@ -568,6 +913,7 @@ def main():
             shot = float(args[i + 1])
 
     ff = ffbin()
+    print("script: %s -> %s" % (SCRIPT_NAME, os.path.basename(OUT)))
     print("loading narration ...")
     durs, tracks = [], []
     for s in SCENES:
