@@ -231,6 +231,32 @@ python3 tools/build_video.py            # full render, about four minutes
 python3 tools/build_video.py --shot 95  # single frame to _shot.png, for tweaking
 ```
 
+## Working on your own laptop
+
+`docs/LAPTOP_SETUP.md` covers installing Keil C51, opening the 26 ready made
+uVision projects, building to a `.hex` file, and flashing the AT89S52. It also
+covers three things that reliably waste a day:
+
+- The free Keil C51 evaluation version is capped at **2 KB of object code** and
+  links at offset `0x0800`. The largest program here is about 3.4 KB, so the
+  later programs will not build without a licence.
+- A **stock USBasp cannot program an AT89S52**. AVR chips reset on a low signal
+  and the 8051 resets on a high one, so stock firmware never gets the chip into
+  programming mode. Use an Arduino as ISP or a dedicated 8051 programmer.
+- The **AT89C51 cannot be ISP programmed at all**. It needs a parallel
+  programmer with 12 V VPP. The `_AT89C51` projects compile, but use the
+  `_AT89S52` ones for hardware.
+
+For licence free checking at home on any operating system, `tools/check_sdcc.py`
+compiles all 13 programs with SDCC in a scratch directory and reports code
+sizes. It translates the Keil syntax automatically and never modifies the files
+in `firmware/`.
+
+```
+python3 tools/check_sdcc.py          # needs sdcc on PATH
+python3 tools/check_sdcc.py 05 12    # only those two programs
+```
+
 ## Safety
 
 - The relay is mains rated but must never be connected to mains during laboratory demonstration.
