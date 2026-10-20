@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1190" height="427" viewBox="0 0 1190 427">
+<rect width="1190" height="427" fill="#0F172A"/>
+<g font-family="DejaVu Sans, Helvetica, Arial, sans-serif">
+<text x="26.0" y="28.0" font-size="17" font-weight="700" fill="#F1F5F9">8051 Hardware Lab - seven slide review deck - layout wireframes</text>
+<text x="26.0" y="47.0" font-size="11" fill="#94A3B8">13.333 x 7.5 in  |  12 column grid  |  0.70 in margins  |  0.22 in gutters  |  all coordinates in inches from the top left of the slide</text>
+<rect x="26.0" y="70.0" width="268.0" height="150.8" fill="#1E293B" stroke="#2A3A52" stroke-width="1"/>
+<text x="33.0" y="64.0" font-size="9.5" font-weight="700" fill="#60A5FA">01  TITLE &amp; METADATA</text>
+<line x1="48.3" y1="70.0" x2="48.3" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="70.7" y1="70.0" x2="70.7" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="93.0" y1="70.0" x2="93.0" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="115.3" y1="70.0" x2="115.3" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="137.7" y1="70.0" x2="137.7" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="160.0" y1="70.0" x2="160.0" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="182.3" y1="70.0" x2="182.3" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="204.7" y1="70.0" x2="204.7" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="227.0" y1="70.0" x2="227.0" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="249.3" y1="70.0" x2="249.3" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="271.7" y1="70.0" x2="271.7" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<rect x="40.7" y="87.3" width="164.8" height="17.3" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="43.2" y="98.4" font-size="6.2" fill="#60A5FA">EYEBROW  mono 9.5</text>
+<rect x="40.7" y="106.9" width="164.8" height="17.3" fill="none" stroke="#F1F5F9" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="43.2" y="118.0" font-size="7.2" fill="#F1F5F9">H1  40pt</text>
+<rect x="40.7" y="125.8" width="164.8" height="11.3" fill="none" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="43.2" y="133.8" font-size="7.2" fill="#94A3B8">SUB  18pt</text>
+<rect x="40.7" y="138.6" width="164.8" height="8.3" fill="none" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="43.2" y="145.1" font-size="7.2" fill="#94A3B8">DECK  12.5pt</text>
+<rect x="40.7" y="154.4" width="164.8" height="34.7" fill="none" stroke="#334155" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="43.2" y="174.2" font-size="7.2" fill="#334155">METADATA  5 rows</text>
+<rect x="216.3" y="89.6" width="63.0" height="35.4" fill="none" stroke="#2563EB" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="218.8" y="109.7" font-size="7.2" fill="#2563EB">CHIP GLYPH</text>
+<rect x="216.3" y="133.3" width="63.0" height="27.9" fill="none" stroke="#334155" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="218.8" y="149.7" font-size="7.2" fill="#334155">SYSTEM ID</text>
+<rect x="40.7" y="192.9" width="238.5" height="21.9" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="43.2" y="206.2" font-size="6.2" fill="#10B981">STAT STRIP  4 tiles</text>
+<rect x="316.0" y="70.0" width="268.0" height="150.8" fill="#1E293B" stroke="#2A3A52" stroke-width="1"/>
+<text x="323.0" y="64.0" font-size="9.5" font-weight="700" fill="#60A5FA">02  PROBLEM &amp; CONSTRAINTS</text>
+<line x1="338.3" y1="70.0" x2="338.3" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="360.7" y1="70.0" x2="360.7" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="383.0" y1="70.0" x2="383.0" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="405.3" y1="70.0" x2="405.3" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="427.7" y1="70.0" x2="427.7" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="450.0" y1="70.0" x2="450.0" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="472.3" y1="70.0" x2="472.3" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="494.7" y1="70.0" x2="494.7" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="517.0" y1="70.0" x2="517.0" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="539.3" y1="70.0" x2="539.3" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="561.7" y1="70.0" x2="561.7" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<rect x="330.7" y="88.8" width="154.1" height="16.6" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="333.2" y="99.5" font-size="7.2" fill="#60A5FA">KICKER + H1</text>
+<rect x="330.7" y="109.9" width="154.1" height="58.0" fill="none" stroke="#2563EB" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="333.2" y="141.4" font-size="6.2" fill="#2563EB">PROBLEM STATEMENT</text>
+<rect x="330.7" y="170.2" width="154.1" height="24.9" fill="none" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="333.2" y="185.1" font-size="7.2" fill="#94A3B8">HARD CONSTRAINT</text>
+<rect x="491.5" y="109.9" width="108.5" height="85.2" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="494.0" y="154.9" font-size="7.2" fill="#10B981">6 CONSTRAINTS</text>
+<rect x="330.7" y="198.9" width="269.3" height="17.3" fill="none" stroke="#334155" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="333.2" y="210.0" font-size="6.2" fill="#334155">CONSTRAINT TABLE C1-C6</text>
+<rect x="606.0" y="70.0" width="268.0" height="150.8" fill="#1E293B" stroke="#2A3A52" stroke-width="1"/>
+<text x="613.0" y="64.0" font-size="9.5" font-weight="700" fill="#60A5FA">03  ARCHITECTURE</text>
+<line x1="628.3" y1="70.0" x2="628.3" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="650.7" y1="70.0" x2="650.7" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="673.0" y1="70.0" x2="673.0" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="695.3" y1="70.0" x2="695.3" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="717.7" y1="70.0" x2="717.7" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="740.0" y1="70.0" x2="740.0" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="762.3" y1="70.0" x2="762.3" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="784.7" y1="70.0" x2="784.7" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="807.0" y1="70.0" x2="807.0" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="829.3" y1="70.0" x2="829.3" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="851.7" y1="70.0" x2="851.7" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<rect x="620.7" y="88.8" width="154.1" height="16.6" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="623.2" y="99.5" font-size="7.2" fill="#60A5FA">KICKER + H1</text>
+<rect x="701.1" y="109.9" width="95.1" height="21.9" fill="none" stroke="#2563EB" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="703.6" y="123.3" font-size="7.2" fill="#2563EB">MCU</text>
+<rect x="620.7" y="109.9" width="73.7" height="17.3" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="623.2" y="121.0" font-size="7.2" fill="#10B981">IN 1</text>
+<rect x="620.7" y="130.3" width="73.7" height="17.3" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="623.2" y="141.4" font-size="7.2" fill="#10B981">IN 2</text>
+<rect x="620.7" y="150.7" width="73.7" height="17.3" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="623.2" y="161.7" font-size="7.2" fill="#10B981">IN 3</text>
+<rect x="803.0" y="109.9" width="73.7" height="17.3" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="805.5" y="121.0" font-size="7.2" fill="#60A5FA">OUT 1</text>
+<rect x="803.0" y="130.3" width="73.7" height="17.3" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="805.5" y="141.4" font-size="7.2" fill="#60A5FA">OUT 2</text>
+<rect x="803.0" y="150.7" width="73.7" height="17.3" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="805.5" y="161.7" font-size="7.2" fill="#60A5FA">OUT 3</text>
+<rect x="643.5" y="174.0" width="193.0" height="13.6" fill="none" stroke="#2563EB" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="646.0" y="183.2" font-size="7.2" fill="#2563EB">SHARED BUS BAR</text>
+<rect x="620.7" y="191.4" width="64.3" height="25.6" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="623.2" y="206.6" font-size="7.2" fill="#60A5FA">DEV 1</text>
+<rect x="687.7" y="191.4" width="64.3" height="25.6" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="690.2" y="206.6" font-size="7.2" fill="#60A5FA">DEV 2</text>
+<rect x="754.7" y="191.4" width="64.3" height="25.6" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="757.2" y="206.6" font-size="7.2" fill="#10B981">DEV 3</text>
+<rect x="821.7" y="191.4" width="64.3" height="25.6" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="824.2" y="206.6" font-size="7.2" fill="#10B981">DEV 4</text>
+<rect x="896.0" y="70.0" width="268.0" height="150.8" fill="#1E293B" stroke="#2A3A52" stroke-width="1"/>
+<text x="903.0" y="64.0" font-size="9.5" font-weight="700" fill="#60A5FA">04  HARDWARE / SOFTWARE STACK</text>
+<line x1="918.3" y1="70.0" x2="918.3" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="940.7" y1="70.0" x2="940.7" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="963.0" y1="70.0" x2="963.0" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="985.3" y1="70.0" x2="985.3" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="1007.7" y1="70.0" x2="1007.7" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="1030.0" y1="70.0" x2="1030.0" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="1052.3" y1="70.0" x2="1052.3" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="1074.7" y1="70.0" x2="1074.7" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="1097.0" y1="70.0" x2="1097.0" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="1119.3" y1="70.0" x2="1119.3" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="1141.7" y1="70.0" x2="1141.7" y2="220.8" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<rect x="910.7" y="88.8" width="154.1" height="16.6" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="913.2" y="99.5" font-size="7.2" fill="#60A5FA">KICKER + H1</text>
+<rect x="910.7" y="109.9" width="269.3" height="15.8" fill="none" stroke="#2563EB" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="913.2" y="120.3" font-size="6.2" fill="#2563EB">LAYER  APPLICATION</text>
+<rect x="910.7" y="127.3" width="269.3" height="15.8" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="913.2" y="137.6" font-size="7.2" fill="#60A5FA">LAYER  DRIVER</text>
+<rect x="910.7" y="144.6" width="269.3" height="15.8" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="913.2" y="154.9" font-size="7.2" fill="#10B981">LAYER  INTERFACE</text>
+<rect x="910.7" y="162.0" width="269.3" height="15.8" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="913.2" y="172.3" font-size="7.2" fill="#10B981">LAYER  SILICON</text>
+<rect x="26.0" y="250.8" width="268.0" height="150.8" fill="#1E293B" stroke="#2A3A52" stroke-width="1"/>
+<text x="33.0" y="244.8" font-size="9.5" font-weight="700" fill="#60A5FA">05  IMPLEMENTATION LOGIC</text>
+<line x1="48.3" y1="250.8" x2="48.3" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="70.7" y1="250.8" x2="70.7" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="93.0" y1="250.8" x2="93.0" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="115.3" y1="250.8" x2="115.3" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="137.7" y1="250.8" x2="137.7" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="160.0" y1="250.8" x2="160.0" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="182.3" y1="250.8" x2="182.3" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="204.7" y1="250.8" x2="204.7" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="227.0" y1="250.8" x2="227.0" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="249.3" y1="250.8" x2="249.3" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="271.7" y1="250.8" x2="271.7" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<rect x="40.7" y="269.6" width="154.1" height="16.6" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="43.2" y="280.3" font-size="7.2" fill="#60A5FA">KICKER + H1</text>
+<rect x="46.1" y="290.7" width="61.6" height="14.3" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="48.6" y="300.3" font-size="7.2" fill="#60A5FA">board_init</text>
+<rect x="46.1" y="307.3" width="61.6" height="14.3" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="48.6" y="316.8" font-size="7.2" fill="#60A5FA">display_init</text>
+<rect x="46.1" y="323.9" width="61.6" height="14.3" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="48.6" y="333.4" font-size="7.2" fill="#10B981">adc_read</text>
+<rect x="46.1" y="340.4" width="61.6" height="18.1" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="48.6" y="351.9" font-size="7.2" fill="#60A5FA">zone?</text>
+<rect x="46.1" y="360.8" width="61.6" height="14.3" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="48.6" y="370.4" font-size="7.2" fill="#10B981">actuate</text>
+<rect x="46.1" y="377.4" width="61.6" height="14.3" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="48.6" y="386.9" font-size="7.2" fill="#60A5FA">publish</text>
+<rect x="118.5" y="290.7" width="88.4" height="28.6" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="121.0" y="307.4" font-size="7.2" fill="#10B981">TIMER 0 ISR</text>
+<rect x="118.5" y="322.4" width="88.4" height="40.7" fill="none" stroke="#2563EB" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="121.0" y="345.1" font-size="7.2" fill="#2563EB">BUS PRIMITIVE 6</text>
+<rect x="118.5" y="366.1" width="88.4" height="32.4" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="121.0" y="384.7" font-size="7.2" fill="#60A5FA">INTERRUPTS</text>
+<rect x="217.6" y="290.7" width="92.5" height="28.6" fill="none" stroke="#334155" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="220.1" y="307.4" font-size="7.2" fill="#334155">STAGE TABLE</text>
+<rect x="217.6" y="322.4" width="92.5" height="40.7" fill="none" stroke="#334155" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="220.1" y="345.1" font-size="7.2" fill="#334155">TIMING TABLE</text>
+<rect x="217.6" y="366.1" width="92.5" height="32.4" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="220.1" y="384.7" font-size="7.2" fill="#10B981">RATIONALE</text>
+<rect x="316.0" y="250.8" width="268.0" height="150.8" fill="#1E293B" stroke="#2A3A52" stroke-width="1"/>
+<text x="323.0" y="244.8" font-size="9.5" font-weight="700" fill="#60A5FA">06  RESULTS &amp; TRADE-OFFS</text>
+<line x1="338.3" y1="250.8" x2="338.3" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="360.7" y1="250.8" x2="360.7" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="383.0" y1="250.8" x2="383.0" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="405.3" y1="250.8" x2="405.3" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="427.7" y1="250.8" x2="427.7" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="450.0" y1="250.8" x2="450.0" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="472.3" y1="250.8" x2="472.3" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="494.7" y1="250.8" x2="494.7" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="517.0" y1="250.8" x2="517.0" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="539.3" y1="250.8" x2="539.3" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="561.7" y1="250.8" x2="561.7" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<rect x="330.7" y="269.6" width="154.1" height="16.6" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="333.2" y="280.3" font-size="7.2" fill="#60A5FA">KICKER + H1</text>
+<rect x="330.7" y="290.7" width="85.2" height="27.9" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="333.2" y="307.0" font-size="7.2" fill="#10B981">METRIC 1</text>
+<rect x="421.9" y="290.7" width="85.2" height="27.9" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="424.4" y="307.0" font-size="7.2" fill="#10B981">METRIC 2</text>
+<rect x="513.0" y="290.7" width="85.2" height="27.9" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="515.5" y="307.0" font-size="7.2" fill="#60A5FA">METRIC 3</text>
+<rect x="330.7" y="321.6" width="85.2" height="27.9" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="333.2" y="337.9" font-size="7.2" fill="#60A5FA">METRIC 4</text>
+<rect x="421.9" y="321.6" width="85.2" height="27.9" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="424.4" y="337.9" font-size="7.2" fill="#60A5FA">METRIC 5</text>
+<rect x="513.0" y="321.6" width="85.2" height="27.9" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="515.5" y="337.9" font-size="7.2" fill="#10B981">METRIC 6</text>
+<rect x="330.7" y="354.0" width="269.3" height="40.7" fill="none" stroke="#334155" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="333.2" y="376.8" font-size="6.2" fill="#334155">TRADE-OFF MATRIX  8 rows</text>
+<rect x="606.0" y="250.8" width="268.0" height="150.8" fill="#1E293B" stroke="#2A3A52" stroke-width="1"/>
+<text x="613.0" y="244.8" font-size="9.5" font-weight="700" fill="#60A5FA">07  SCALE, SCOPE, CLOSE</text>
+<line x1="628.3" y1="250.8" x2="628.3" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="650.7" y1="250.8" x2="650.7" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="673.0" y1="250.8" x2="673.0" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="695.3" y1="250.8" x2="695.3" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="717.7" y1="250.8" x2="717.7" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="740.0" y1="250.8" x2="740.0" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="762.3" y1="250.8" x2="762.3" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="784.7" y1="250.8" x2="784.7" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="807.0" y1="250.8" x2="807.0" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="829.3" y1="250.8" x2="829.3" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<line x1="851.7" y1="250.8" x2="851.7" y2="401.5" stroke="#2A3A52" stroke-width="0.4" stroke-dasharray="2,3"/>
+<rect x="620.7" y="269.6" width="154.1" height="16.6" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="623.2" y="280.3" font-size="7.2" fill="#60A5FA">KICKER + H1</text>
+<rect x="620.7" y="290.7" width="85.2" height="49.7" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="623.2" y="318.0" font-size="7.2" fill="#10B981">NOW</text>
+<rect x="711.9" y="290.7" width="85.2" height="49.7" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="714.4" y="318.0" font-size="7.2" fill="#60A5FA">NEXT</text>
+<rect x="803.0" y="290.7" width="85.2" height="49.7" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="805.5" y="318.0" font-size="7.2" fill="#60A5FA">LATER</text>
+<rect x="620.7" y="345.0" width="154.1" height="49.7" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="623.2" y="372.2" font-size="7.2" fill="#10B981">CONCLUSION  4</text>
+<rect x="781.5" y="345.0" width="108.5" height="49.7" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="784.0" y="372.2" font-size="7.2" fill="#60A5FA">LIMITS  5</text>
+</g>
+</svg>
