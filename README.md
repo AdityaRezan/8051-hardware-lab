@@ -9,6 +9,10 @@ derived design constants, bill of materials, a ten stage assembly procedure and 
 **Department:** Electronics and Communication Engineering
 **Academic year:** 2025-26
 
+**New here? Read [`START_HERE.md`](START_HERE.md) first.** It walks the whole
+project in the order you actually do it: install Keil, build all 13 programs,
+build the board stage by stage, wire the programmer, flash, power on.
+
 ---
 
 ## The problem this project solves
