@@ -9,6 +9,11 @@ Two halves:
 - **Part A happens on your laptop.** You finish it at home. Output: 13 HEX files.
 - **Parts B and C happen on the bench.** Output: a board that runs.
 
+If you only care about the software half - build the HEX files, flash them, and
+have the circuit start by itself in the lab - read
+[`docs/SOFTWARE_RUNBOOK.md`](docs/SOFTWARE_RUNBOOK.md) instead. It is this same
+process as a tick-box list with a minute-by-minute lab-day timeline.
+
 Do Part A completely before you go to the lab. The lab machine does not need
 Keil installed.
 
@@ -379,6 +384,7 @@ circuit. Check R1 and C2 on pin 9 before suspecting the code.
 |---|---|
 | `START_HERE.md` | This document |
 | `README.md` | What the project is and why the design is shaped this way |
+| `docs\SOFTWARE_RUNBOOK.md` | The software half only, as a tick-box runbook with a lab-day timeline |
 | `docs\LAPTOP_SETUP.md` | Installing Keil, the eval limits, licence routes |
 | `docs\FLASHING.md` | Programmers, wiring, avrdude, ProgISP, fault table |
 | `hardware\BOM.csv` | 80 parts with Indian sources and prices |

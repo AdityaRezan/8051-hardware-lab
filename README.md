@@ -85,6 +85,7 @@ affects the device whose strobe is pulsed. No port expander IC is used.
 ├── docs/
 │   ├── 8051_Hardware_Lab_Review_Deck.pptx   7 slide technical review deck
 │   ├── 8051_Hardware_Implementation.pptx    28 slide detailed deck
+│   ├── SOFTWARE_RUNBOOK.md  software half only: build, flash, run, lab day
 │   └── guide/
 │       ├── 8051_How_It_Works.pdf            18 page plain English guide
 │       └── images/                          source photos and illustrations
@@ -254,7 +255,10 @@ python3 tools/build_video.py --script full --shot 340   # one frame, for tweakin
 ## Working on your own laptop
 
 `docs/LAPTOP_SETUP.md` covers installing Keil C51, opening the 26 ready made
-uVision projects, and building to a `.hex` file. `docs/FLASHING.md` then covers
+uVision projects, and building to a `.hex` file. `docs/SOFTWARE_RUNBOOK.md`
+compresses the software half into one tick-box list with a minute-by-minute lab
+day timeline, from installing Keil to a board that boots on its own power.
+`docs/FLASHING.md` then covers
 getting that file into the chip: the six ISP wires, an Arduino as ISP, USBasp,
 ProgISP, and a fault table. Together they cover four things that reliably waste
 a day:
