@@ -81,6 +81,9 @@ affects the device whose strobe is pulsed. No port expander IC is used.
 ├── docs/
 │   ├── 8051_Hardware_Lab_Review_Deck.pptx   7 slide technical review deck
 │   ├── 8051_Hardware_Implementation.pptx    28 slide detailed deck
+│   └── guide/
+│       ├── 8051_How_It_Works.pdf            18 page plain English guide
+│       └── images/                          source photos and illustrations
 │   ├── DECK_OUTLINE.md  wireframes, content spec and visual asset manifest
 │   └── wireframes.svg   layout blueprints for all seven slides
 ├── tools/                generators for the decks, the BOM and the schematic
@@ -162,11 +165,43 @@ pip install python-pptx
 python3 tools/build_exec_deck.py      # 7 slide review deck
 python3 tools/build_deck.py           # 28 slide detailed deck
 python3 tools/gen_wireframes.py       # docs/wireframes.svg
+python3 tools/build_guide_pdf.py      # docs/guide/8051_How_It_Works.pdf
 python3 tools/gen_bom.py              # hardware/BOM.md
 python3 tools/gen_min_system_svg.py   # hardware/min-system.svg
 ```
 
 ---
+
+## Plain English guide
+
+`docs/guide/8051_How_It_Works.pdf` is an 18 page guide written for a reader with no
+electronics background. It covers the two halves of the project separately, then the join
+between them, then the physical build, then two full walkthroughs (a button press and a rise
+in temperature), and finishes with test results, a glossary and a script for presenting the
+work. It uses real photographs of every part alongside three generated illustrations of the
+concepts that cannot be photographed, namely the shared bus, the boundary between code and
+pin, and the four beat control loop.
+
+| Page | Subject |
+|---|---|
+| 1 | Cover |
+| 2 | The whole project in one paragraph |
+| 3 | Two halves of one machine |
+| 4 | The parts you can touch |
+| 5 | The parts that make the rest work |
+| 6 | The code: thirteen small programs |
+| 7 | Where the software touches the metal |
+| 8 | The problem: 54 wires, 32 pins |
+| 9 | The fix: one road, many gates |
+| 10 | The loop: read, convert, decide, act |
+| 11 to 12 | Building it, stage by stage |
+| 13 to 14 | What happens when you press the button, and when the room gets hot |
+| 15 | How we checked it was right |
+| 16 | The numbers |
+| 17 | Plain English glossary |
+| 18 | How to present this project |
+
+Rebuild with `python3 tools/build_guide_pdf.py`. It needs `weasyprint` and `pillow`.
 
 ## Safety
 
