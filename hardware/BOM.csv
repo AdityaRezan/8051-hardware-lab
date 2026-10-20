@@ -1,0 +1,63 @@
+Ref,Item,Value or Part Number,Package,Qty,Unit INR,Purpose,Typical Source
+U1,Microcontroller,AT89S52-24PU,DIP-40,1,120,Target device 8 KB flash ISP programmable,Robu.in / Electronicscomp
+U2,Octal latch,74HC573N,DIP-20,1,25,Latches the 8 LED patterns off the shared data bus,Robu.in
+U3,Octal latch,74HC573N,DIP-20,1,25,Latches the 7-segment pattern off the shared data bus,Robu.in
+U4,ADC,ADC0804LCN,DIP-20,1,95,8-bit parallel ADC for the LM35,Electronicscomp
+U5,Line driver,MAX232N,DIP-16,1,45,TTL to RS-232 level translation,Robu.in
+U6,Temperature sensor,LM35DZ,TO-92,1,75,10 mV per degree C analog source,Robu.in
+U7,Regulator,L7805CV,TO-220,1,12,5 V regulated supply,Robu.in
+Y1,Crystal,11.0592 MHz,HC-49U,1,12,UART accurate baud clock,Robu.in
+Q1,NPN transistor,BC547,TO-92,1,2,Digit 1 cathode switch,Robu.in
+Q2,NPN transistor,BC547,TO-92,1,2,Digit 2 cathode switch,Robu.in
+Q3,NPN transistor,BC547,TO-92,1,2,Relay coil driver,Robu.in
+Q4,NPN transistor,BC547,TO-92,1,2,Buzzer driver,Robu.in
+D1,Rectifier diode,1N4007,DO-41,1,2,Reverse polarity protection,Robu.in
+D2,Rectifier diode,1N4007,DO-41,1,2,Relay coil flyback,Robu.in
+D3-D10,LED 5 mm,Red green yellow mix,5 mm,8,1,LED output bank,Robu.in
+D11,LED 5 mm,Green,5 mm,1,1,Power indicator,Robu.in
+LCD1,Character LCD,16x2 HD44780 JHD162A,Module,1,160,Text display,Robu.in
+DSP1,7-segment display,2 digit 0.56 in common cathode,Module,1,35,Numeric display,Robu.in
+RLY1,Relay,SRD-05VDC-SL-C SPDT,Module,1,55,5 V coil mains rated output,Robu.in
+BZ1,Buzzer,5 V continuous,Module,1,25,Audible alarm,Robu.in
+SW1,DIP switch,8 way SPST,DIP-16,1,30,Digital input bank,Robu.in
+PB1,Push button,6x6 mm tactile,PTH,1,3,INT0 emergency input,Robu.in
+PB2,Push button,6x6 mm tactile,PTH,1,3,INT1 mode input,Robu.in
+PB3,Push button,6x6 mm tactile,PTH,1,3,Manual reset,Robu.in
+RN1,Resistor network,10 kOhm x 9 SIP,SIP-9,1,10,P0 data bus pull-ups,Robu.in
+RN2,Resistor network,10 kOhm x 9 SIP,SIP-9,1,10,DIP switch pull-ups,Robu.in
+RN3,Resistor network,470 Ohm x 9 SIP,SIP-9,1,8,LED current limit,Robu.in
+RN4,Resistor network,470 Ohm x 9 SIP,SIP-9,1,8,7-segment current limit,Robu.in
+R1,Resistor,10 kOhm 0.25 W,Axial,1,1,Reset pull-down,Robu.in
+R2,Resistor,4.7 kOhm 0.25 W,Axial,2,1,Q1 and Q2 base resistors,Robu.in
+R3,Resistor,1 kOhm 0.25 W,Axial,2,1,Q3 and Q4 base resistors,Robu.in
+R4,Resistor,1 kOhm 0.25 W,Axial,3,1,ISP series isolation on P1.5 P1.6 P1.7,Robu.in
+R5,Resistor,330 Ohm 0.25 W,Axial,1,1,Power LED,Robu.in
+R6,Resistor,10 kOhm 0.25 W,Axial,1,1,ADC0804 clock resistor,Robu.in
+R7,Resistor,220 Ohm 0.25 W,Axial,1,1,LCD backlight,Robu.in
+R8,Trimpot,10 kOhm multiturn 3296,PTH,1,20,ADC Vref/2 calibration,Robu.in
+R9,Potentiometer,10 kOhm,PTH,1,15,LCD contrast,Robu.in
+C1,Capacitor,0.1 uF ceramic 104,DIP,1,1,MCU decoupling,Robu.in
+C2,Capacitor,10 uF 16 V electrolytic,Radial,1,3,Reset circuit,Robu.in
+C3,Capacitor,30 pF ceramic,DIP,2,1,Crystal load capacitors,Robu.in
+C4,Capacitor,100 uF 25 V electrolytic,Radial,1,6,Regulator input,Robu.in
+C5,Capacitor,100 uF 16 V electrolytic,Radial,1,5,Regulator output,Robu.in
+C6,Capacitor,0.1 uF ceramic 104,DIP,6,1,IC decoupling U2 U3 U4 U5 LCD ADC,Robu.in
+C7,Capacitor,1 uF 16 V electrolytic,Radial,4,2,MAX232 charge pump,Robu.in
+C8,Capacitor,150 pF ceramic,DIP,1,2,ADC0804 clock capacitor,Robu.in
+C9,Capacitor,0.1 uF ceramic 104,DIP,1,1,LM35 supply decoupling,Robu.in
+C10,Capacitor,0.1 uF ceramic 104,DIP,1,1,ADC Vref/2 decoupling,Robu.in
+S1,IC socket,40 pin turned pin,DIP-40,1,35,Allows the MCU to be swapped,Robu.in
+S2,IC socket,20 pin,DIP-20,3,5,For U2 U3 U4,Robu.in
+S3,IC socket,16 pin,DIP-16,1,6,For U5,Robu.in
+J1,DC power jack,5.5 x 2.1 mm,PTH,1,12,7 to 12 V input,Robu.in
+J2,Serial connector,DB9 female right angle,PTH,1,25,PC serial link,Robu.in
+J3,ISP header,2x5 pin male,Header,1,10,AT89S52 programming,Robu.in
+J4,Screw terminal,2 pin 5.08 mm,PTH,1,8,Relay contact output,Robu.in
+J5,Screw terminal,3 pin 5.08 mm,PTH,1,8,LM35 connector,Robu.in
+JP1,Jumper,2 pin male plus shunt,Header,1,5,Isolates P3.4 from the relay during scope tests,Robu.in
+HS1,Heatsink,TO-220 clip on,TO-220,1,10,7805 cooling,Robu.in
+PCB1,General purpose PCB,7 x 9 cm dot board,PCB,1,40,Soldered prototype,Robu.in
+WR1,Hookup wire,22 AWG single core,Reel,1,60,Point to point wiring,Robu.in
+PWR1,Power adapter,9 V 1 A SMPS,Module,1,120,Board supply,Robu.in
+PRG1,ISP programmer,USBasp,Module,1,250,Flashes the AT89S52,Robu.in
+PRG2,Serial adapter,USB to RS-232 DB9,Module,1,250,PC link for laptops,Robu.in

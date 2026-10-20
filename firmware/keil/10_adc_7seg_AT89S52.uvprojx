@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="project_proj.xsd">
+
+  <SchemaVersion>2.1</SchemaVersion>
+
+  <Header>### uVision Project, (C) Keil Software</Header>
+
+  <Extensions>
+    <cExt>*.c</cExt>
+    <aExt>*.s*; *.src; *.a*</aExt>
+    <oExt>*.obj</oExt>
+    <lExt>*.lib</lExt>
+    <tExt>*.txt; *.h; *.inc</tExt>
+    <pExt>*.plm</pExt>
+    <CppX>*.cpp</CppX>
+    <nMigrate>0</nMigrate>
+  </Extensions>
+
+  <Device>
+    <Vendor>Atmel</Vendor>
+    <Device>AT89S52</Device>
+    <Description>AT89S52</Description>
+    <Cpu>IRAM(0-0xFF) IROM(0-0x1FFF) CLOCK(11059200) MODC2</Cpu>
+    <FlashDriverDll></FlashDriverDll>
+    <SvdFile></SvdFile>
+    <RegisterFilePath></RegisterFilePath>
+  </Device>
+
+  <Groups>
+    <Group>
+      <GroupName>::Source</GroupName>
+      <Files>
+        <File>
+          <FileName>10_adc_7seg.c</FileName>
+          <FileType>1</FileType>
+          <FilePath>..\src\10_adc_7seg.c</FilePath>
+        </File>
+      </Files>
+    </Group>
+    <Group>
+      <GroupName>::Header</GroupName>
+      <Files>
+        <File>
+          <FileName>board.h</FileName>
+          <FileType>5</FileType>
+          <FilePath>..\inc\board.h</FilePath>
+        </File>
+      </Files>
+    </Group>
+  </Groups>
+
+  <Targets>
+    <Target>
+      <TargetName>AT89S52</TargetName>
+      <Toolset>0x1</Toolset>
+      <ToolsetName>C51</ToolsetName>
+      <pCCUsed>0x1000000</pCCUsed>
+      <TargetOption>
+        <TargetCommonOption>
+          <Device>AT89S52</Device>
+          <Vendor>Atmel</Vendor>
+          <Cpu>IRAM(0-0xFF) IROM(0-0x1FFF) CLOCK(11059200) MODC2</Cpu>
+          <FlashDriverDll></FlashDriverDll>
+          <SvdFile></SvdFile>
+          <RegisterFilePath></RegisterFilePath>
+          <OutputDirectory>.\Objects\</OutputDirectory>
+          <OutputName>10_adc_7seg</OutputName>
+          <CreateExecutable>1</CreateExecutable>
+          <CreateLib>0</CreateLib>
+          <CreateHexFile>1</CreateHexFile>
+          <DebugInformation>1</DebugInformation>
+          <BrowseInformation>1</BrowseInformation>
+          <ListingPath>.\Listings\</ListingPath>
+          <HexFormatSelection>1</HexFormatSelection>
+          <Merge32K>0</Merge32K>
+          <CreateBatchFile>0</CreateBatchFile>
+          <OPTTT>
+            <gFlags>0</gFlags>
+          </OPTTT>
+          <C51>
+            <VariousControls>
+              <MiscControls></MiscControls>
+              <Define></Define>
+              <Undefine></Undefine>
+              <IncludePath>..\inc</IncludePath>
+            </VariousControls>
+            <Optimizations>
+              <OLevel>8</OLevel>
+              <OptimizeSize>0</OptimizeSize>
+              <Warnings>2</Warnings>
+              <Favor>0</Favor>
+            </Optimizations>
+          </C51>
+          <A51>
+            <VariousControls>
+              <MiscControls></MiscControls>
+              <Define></Define>
+              <Undefine></Undefine>
+              <IncludePath></IncludePath>
+            </VariousControls>
+          </A51>
+          <BL51>
+            <Locate>
+              <Code></Code>
+              <Xdata></Xdata>
+            </Locate>
+            <Misc>
+              <Bell>0</Bell>
+            </Misc>
+          </BL51>
+          <DebugOption>
+            <Simulator>
+              <UseSimulator>1</UseSimulator>
+              <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
+              <RunToMain>1</RunToMain>
+              <RestoreBreakpoints>1</RestoreBreakpoints>
+              <RestoreWatchpoints>1</RestoreWatchpoints>
+              <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
+              <RestoreFunctions>1</RestoreFunctions>
+              <RestoreToolbox>1</RestoreToolbox>
+              <LimitSpeed>0</LimitSpeed>
+            </Simulator>
+          </DebugOption>
+        </TargetCommonOption>
+      </TargetOption>
+    </Target>
+  </Targets>
+
+</Project>

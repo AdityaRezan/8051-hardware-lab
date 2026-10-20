@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+Thumbs.db
+*.hex
+*.bak
+
+# Keil uVision build output
+Objects/
+Listings/
+*.hex
+*.ihx
+*.obj
+*.lst
+*.m51
+*.build_log.htm
+*.uvguix*
+*.uvoptx
