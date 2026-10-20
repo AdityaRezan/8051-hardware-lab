@@ -17,3 +17,8 @@ Listings/
 *.build_log.htm
 *.uvguix*
 *.uvoptx
+
+# video build scratch
+docs/guide/video/_narration.wav
+docs/guide/video/_shot.png
+docs/guide/video/_small.mp4

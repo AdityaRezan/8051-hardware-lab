@@ -166,6 +166,7 @@ python3 tools/build_exec_deck.py      # 7 slide review deck
 python3 tools/build_deck.py           # 28 slide detailed deck
 python3 tools/gen_wireframes.py       # docs/wireframes.svg
 python3 tools/build_guide_pdf.py      # docs/guide/8051_How_It_Works.pdf
+python3 tools/build_video.py          # docs/guide/video/8051_Assembly_and_Run.mp4
 python3 tools/gen_bom.py              # hardware/BOM.md
 python3 tools/gen_min_system_svg.py   # hardware/min-system.svg
 ```
@@ -202,6 +203,33 @@ pin, and the four beat control loop.
 | 18 | How to present this project |
 
 Rebuild with `python3 tools/build_guide_pdf.py`. It needs `weasyprint` and `pillow`.
+
+## Video
+
+`docs/guide/video/8051_Assembly_and_Run.mp4` is a five minute twelve second,
+1280 by 720, narrated walkthrough with burned in captions. It covers the
+constraint and the shared bus fix, all ten assembly stages, and the board
+running: the LED test, the command shell, the self test, the zone monitor and
+the emergency stop.
+
+| File | What it is |
+|---|---|
+| `8051_Assembly_and_Run.mp4` | the finished video |
+| `SHOOTING_SCRIPT.md` | shot by shot script for filming the real board to the same narration |
+| `audio/` | the ten recorded narration clips, one per scene |
+| `frames/` | the six generated board images used as source frames |
+
+The board images are generated: they show the build rather than photograph it,
+because no camera was available. `SHOOTING_SCRIPT.md` has the timecodes, camera
+setup and cut list needed to replace them with real footage of the bench
+without re-recording anything.
+
+Rebuild with:
+
+```
+python3 tools/build_video.py            # full render, about four minutes
+python3 tools/build_video.py --shot 95  # single frame to _shot.png, for tweaking
+```
 
 ## Safety
 
