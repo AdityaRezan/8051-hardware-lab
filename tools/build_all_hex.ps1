@@ -10,6 +10,8 @@ Usage, from a PowerShell prompt in this folder:
     .\build_all_hex.ps1 -Small                 rebuild optimised for size
     .\build_all_hex.ps1 -LX51                  also try REMOVEUNUSED
     .\build_all_hex.ps1 -KeilPath C:\Keil_v5\UV4
+    .\build_all_hex.ps1 -Pattern "exp*.uvprojx" -SetHex
+                                               build and fix your own projects
 
 Double click Build-All-HEX.bat if you would rather not open PowerShell.
 #>
@@ -18,6 +20,8 @@ Double click Build-All-HEX.bat if you would rather not open PowerShell.
 param(
     [string]$KeilPath = "",
     [string[]]$Programs = @(),
+    [string]$Pattern = "*_AT89S52.uvprojx",
+    [switch]$SetHex,
     [switch]$Small,
     [switch]$LX51,
     [switch]$Undo
@@ -121,7 +125,7 @@ if ($LX51)  { Write-Host "  Mode     : LX51 linker with REMOVEUNUSED" }
 New-Item -ItemType Directory -Force -Path $hexDir | Out-Null
 New-Item -ItemType Directory -Force -Path $logDir | Out-Null
 
-$projects = Get-ChildItem -Path $keilDir -Filter "*_AT89S52.uvprojx" | Sort-Object Name
+$projects = Get-ChildItem -Path $keilDir -Filter $Pattern | Sort-Object Name
 if ($Programs.Count -gt 0) {
     $projects = $projects | Where-Object {
         $name = $_.Name
@@ -132,6 +136,26 @@ if ($Programs.Count -gt 0) {
 if (-not $projects) {
     Write-Host "  No matching projects found." -ForegroundColor Red
     exit 1
+}
+
+if ($SetHex) {
+    Write-Head "Enabling 'Create HEX File' in every matched project"
+    $patched = 0
+    foreach ($p in $projects) {
+        $text = [System.IO.File]::ReadAllText($p.FullName)
+        if ($text -match "<CreateHexFile>0</CreateHexFile>") {
+            Copy-Item $p.FullName ($p.FullName + ".bak") -Force
+            $text = $text -replace "<CreateHexFile>0</CreateHexFile>", "<CreateHexFile>1</CreateHexFile>"
+            [System.IO.File]::WriteAllText($p.FullName, $text, [System.Text.Encoding]::UTF8)
+            $patched++
+        }
+    }
+    if ($patched -eq 0) {
+        Write-Host "  All $($projects.Count) project(s) already create a HEX file."
+    } else {
+        Write-Host "  Patched $patched project(s). Backups kept as *.bak; -Undo restores them."
+    }
+    Write-Host ""
 }
 
 Write-Head "Building $($projects.Count) project(s)"

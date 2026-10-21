@@ -195,6 +195,56 @@ cd C:\8051lab\tools
 - [ ] Every HEX that says `OK` has now been copied into `firmware\hex\`.
       That folder is your deliverable.
 
+### 3.0 Mass generating HEX files
+
+Three ways, from least to most effort.
+
+**a) The supplied script, all 13 at once.** This is the normal route:
+
+```powershell
+cd C:\8051lab\tools
+.\build_all_hex.ps1
+```
+
+It finds Keil, builds every `*_AT89S52.uvprojx`, checks each HEX for the reset
+jump, and copies the good ones into `firmware\hex`. One command, 13 files.
+
+**b) Your own projects, such as `exp1` to `exp5`.** Those are almost certainly
+hand made, and a hand made uVision project has **Create HEX File unticked by
+default**. That is why the objects folder fills with `.obj`, `.lnp` and an
+extension-less `exp1`, and never a `.hex`. Fix every project in one pass:
+
+```powershell
+cd C:\8051lab\tools
+.\build_all_hex.ps1 -Pattern "exp*.uvprojx" -SetHex
+```
+
+`-SetHex` backs up each project as `*.bak`, flips `<CreateHexFile>0</CreateHexFile>`
+to `1` in the project XML, then builds them all. `-Undo` puts the originals back.
+To build without changing the projects first, drop `-SetHex`.
+
+Point it at another folder with `-KeilPath`, and filter with `-Programs`:
+
+```powershell
+.\build_all_hex.ps1 -Pattern "*_AT89S52.uvprojx" -Programs 01,12
+```
+
+**c) Keil's own batch build.** In uVision, `Project > Batch Build` collects
+several targets, and a multi-project workspace builds every project in one go.
+The command line equivalent, which is what the script does internally, is:
+
+```
+"C:\Keil_v5\UV4\UV4.exe" -b "C:\8051lab\firmware\keil\01_led_blink_AT89S52.uvprojx" -o build.log
+```
+
+Repeat it per project, or loop it. `-b` is a normal build, `-r` rebuilds,
+`-c` cleans.
+
+**What mass building does not fix.** The 2048 byte evaluation limit applies to
+every program equally. A batch run reports `OVER LIMIT` for the big ones and
+still produces no HEX for them, exactly as a single build would. Use `-Small`,
+then `-Small -LX51`, per section 3.1.
+
 ### 3.1 The programs that come back OVER LIMIT
 
 Expect **09, 12 and 13** to be over on the free compiler, and 11 to be close.
