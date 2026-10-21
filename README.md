@@ -81,6 +81,7 @@ affects the device whose strobe is pulsed. No port expander IC is used.
 │   ├── inc/board.h       pin definitions and all peripheral drivers
 │   ├── src/01..13_*.c    thirteen standalone Keil C51 programs
 │   ├── keil/*.uvprojx    uVision 5 projects for AT89S52 and AT89C51
+│   ├── hex/              the 13 built HEX files, committed as the deliverable
 │   └── README.md         Keil setup, flashing, program reference
 ├── docs/
 │   ├── 8051_Hardware_Lab_Review_Deck.pptx   7 slide technical review deck
