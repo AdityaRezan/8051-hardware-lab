@@ -86,6 +86,8 @@ affects the device whose strobe is pulsed. No port expander IC is used.
 │   ├── 8051_Hardware_Lab_Review_Deck.pptx   7 slide technical review deck
 │   ├── 8051_Hardware_Implementation.pptx    28 slide detailed deck
 │   ├── SOFTWARE_RUNBOOK.md  software half only: build, flash, run, lab day
+│   ├── FACULTY_DEMO.md  demo-day playbook: bench setup, 12 min script, viva bank
+│   ├── DEMO_CARD.md     one printable page to keep under the board
 │   └── guide/
 │       ├── 8051_How_It_Works.pdf            18 page plain English guide
 │       └── images/                          source photos and illustrations

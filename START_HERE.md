@@ -385,6 +385,8 @@ circuit. Check R1 and C2 on pin 9 before suspecting the code.
 | `START_HERE.md` | This document |
 | `README.md` | What the project is and why the design is shaped this way |
 | `docs\SOFTWARE_RUNBOOK.md` | The software half only, as a tick-box runbook with a lab-day timeline |
+| `docs\FACULTY_DEMO.md` | Showing it to faculty: bench setup, 12 minute script, viva question bank |
+| `docs\DEMO_CARD.md` | The one page you keep under the board during the demo |
 | `docs\LAPTOP_SETUP.md` | Installing Keil, the eval limits, licence routes |
 | `docs\FLASHING.md` | Programmers, wiring, avrdude, ProgISP, fault table |
 | `hardware\BOM.csv` | 80 parts with Indian sources and prices |
