@@ -87,6 +87,8 @@ affects the device whose strobe is pulsed. No port expander IC is used.
 │   ├── 8051_Hardware_Implementation.pptx    28 slide detailed deck
 │   ├── SOFTWARE_RUNBOOK.md  software half only: build, flash, run, lab day
 │   ├── FACULTY_DEMO.md  demo-day playbook: bench setup, 12 min script, viva bank
+│   ├── RESULTS.md       what the results are, and the six minute one-on-one
+│   ├── 8051_Results_Sheet.pdf  two page A4 sheet the reviewer holds
 │   ├── DEMO_CARD.md     one printable page to keep under the board
 │   └── guide/
 │       ├── 8051_How_It_Works.pdf            18 page plain English guide
@@ -176,6 +178,7 @@ python3 tools/build_guide_pdf.py      # docs/guide/8051_How_It_Works.pdf
 python3 tools/build_video.py          # docs/guide/video/8051_Assembly_and_Run.mp4
 python3 tools/gen_bom.py              # hardware/BOM.md
 python3 tools/gen_min_system_svg.py   # hardware/min-system.svg
+python3 tools/build_results_pdf.py    # docs/8051_Results_Sheet.pdf
 ```
 
 ---
