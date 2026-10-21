@@ -67,6 +67,46 @@ The AT89C51 cannot be programmed this way at all. It has no SPI interface and
 needs a 12 V parallel programmer. Only the AT89S52 variants of the project files
 can be flashed with the steps below.
 
+### 1.1 Tools that get suggested and do not work
+
+| Tool | Verdict | Why |
+|---|---|---|
+| **Flash Magic** | **No** | It is an NXP tool. It talks to NXP's on-chip serial bootloader over a COM port, and its device list contains only NXP parts (P89V51Rx2, P89C51Rx2, P89LPC9xx, P89V660, LPC). The AT89S52 has no bootloader and no UART programming mode. There is no setting that makes it work. |
+| Khazama AVR Programmer | No | AVR only. It speaks SPI, but to Atmel AVR parts. |
+| avrdude alone | Only with a programmer | It is a front end. Wiring it to a bare board does nothing; the board's ISP port has to be driven by something that speaks 8051 SPI, such as ArduinoISP. |
+| ProgISP | Yes, with USBasp hardware | Correct for the AT89S52, but only once the USBasp RESET polarity problem is solved. See section 6. |
+| PonyProg with an SI-Prog dongle | Yes | Bit-bangs SPI from a real RS232 port. Works, but needs a physical COM port, which most laptops no longer have. |
+
+**Five second test:** look at the top marking of the chip.
+
+- `AT89S52-24PU` (Atmel or Microchip) - this document, from the Arduino route in
+  section 5. Flash Magic is not an option.
+- `P89V51RD2` or another `P8...` part (NXP, formerly Philips) - **then** Flash
+  Magic is the correct tool, over the DB9, because that chip ships with a
+  bootloader. See section 1.2.
+
+### 1.2 If the board actually carries an NXP part
+
+Some college kits in India use the **P89V51RD2** rather than the AT89S52,
+precisely because it can be programmed with a USB-to-serial adapter and Flash
+Magic, with no programmer at all. If that is what is in your socket:
+
+1. Flash Magic: device `P89V51RD2`, COM port of the USB-serial adapter, baud
+   9600, **oscillator 11.0592 MHz typed exactly**, interface `None (ISP)`.
+2. Load the HEX, tick Erase, Program, Verify, start.
+3. Confirm with `ISP > Read Device Signature`, and re-read the memory and compare
+   it byte for byte.
+4. Enter ISP mode with the kit's jumper, or let Flash Magic drive DTR and RTS.
+
+Two warnings before swapping parts:
+
+- The P89V51RD2 is **6 clock**, not 12 clock, unless it is explicitly put into
+  12 clock mode. That halves the machine cycle, so every timer reload, every
+  delay and the baud rate double. `TH0_5MS` and `TH1_9600` in `board.h` would
+  need recalculating. It is not a drop-in substitute.
+- The port and pin aliases in `board.h` describe this board. Confirm the kit's
+  wiring before assuming program 12 will drive the same pins.
+
 ---
 
 ## 2. Prepare the HEX file in Keil
