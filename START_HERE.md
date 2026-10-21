@@ -344,7 +344,7 @@ only one flash.
 | 6 | 06_square_wave | 1 kHz on P3.4, needs JP1 removed and a scope |
 | 7 | 07_ext_interrupt | Pressing PB1 increments the count |
 | 8 | 08_uart_echo | Terminal at 9600 8N1 echoes every character |
-| 9 | 09_uart_commands | Commands L, S, R, A, T read the board |
+| 9 | 09_uart_commands | Commands HLP, LED HH, SEG NN, RLY N, TMP read the board |
 | 10 | 10_adc_7seg | Display shows the LM35 temperature |
 | 11 | 11_adc_lcd | LCD shows temperature and a bar graph |
 | 12 | 12_industrial_monitor | Zones, alarm, relay, telemetry |

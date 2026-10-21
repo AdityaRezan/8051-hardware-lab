@@ -8,6 +8,53 @@ Target device: AT89S52-24PU, 40 pin DIP, 11.0592 MHz, 5 V, 8 KB of flash.
 
 ---
 
+## The 60 second version
+
+If you already know the wiring and just need the procedure, this is all of it.
+Everything below this section is the explanation.
+
+**Before you touch the programmer, all four must be true:**
+
+1. 5 V measured between **pin 40 and pin 20** of the chip socket.
+2. **Pin 31 (EA) at 5 V.**
+3. **11.0592 MHz crystal and both 30 pF capacitors** fitted. No oscillator, no
+   programming: the ISP write timing comes from it.
+4. **SW6, SW7, SW8 set to OFF.** They share P1.5, P1.6, P1.7 with the programmer.
+
+**Wiring, six signals, ground must be common:**
+
+| Signal | J3 | AT89S52 pin | Arduino |
+|---|---:|---|---:|
+| MOSI | 1 | P1.5 (6) | 11 |
+| MISO | 9 | P1.6 (7) | 12 |
+| SCK | 7 | P1.7 (8) | 13 |
+| RESET | 5 | pin 9 | 10 |
+| GND | 4 | pin 20 | GND |
+| VCC | 2 | leave disconnected, board has its own supply | - |
+
+**Flash:**
+
+```
+avrdude -C avrdude-8051.conf -c avrisp -p 89s52 -P COM3 -b 19200 \
+        -U flash:w:firmware\hex\01_led_blink.hex:i
+```
+
+**You are done when you see:**
+
+```
+avrdude: Device signature = 0x1e5206 (probably 89s52)
+avrdude: 1129 bytes of flash written
+avrdude: 1129 bytes of flash verified
+```
+
+**Then, every time:** disconnect the programmer, power off, wait two seconds,
+power on. Do not test with the programmer still attached.
+
+That is the whole procedure. The rest of this document is for when it does not
+work.
+
+---
+
 ## 1. Programmer options
 
 | Option | Works out of the box | Cost | Notes |
@@ -333,14 +380,14 @@ previous, because there is only one flash.
 | 3 | 03_switch_led | SW1 to SW8 each light their matching LED live |
 | 4 | 04_seg7_counter | Seven segment counts 00 to 99 |
 | 5 | 05_timer0_second | Display counts one per second, timed not delayed |
-| 6 | 06_square_wave | 1 kHz square wave on P3.4, visible on a scope |
+| 6 | 06_square_wave | 1 kHz square wave on P3.4, scope only, remove JP1 first |
 | 7 | 07_ext_interrupt | INT0 button press increments the count |
 | 8 | 08_uart_echo | Terminal at 9600 8N1 echoes every character typed |
-| 9 | 09_uart_commands | Terminal commands L, S, R, A, T read the board |
+| 9 | 09_uart_commands | Terminal commands `HLP`, `LED HH`, `SEG NN`, `RLY N`, `BUZ N`, `TMP` |
 | 10 | 10_adc_7seg | Display shows the LM35 temperature in Celsius |
 | 11 | 11_adc_lcd | LCD shows the temperature and a bar graph |
 | 12 | 12_industrial_monitor | Full monitor with alarm and relay, may exceed 2 KB |
-| 13 | 13_selftest | Walks every output and reports faults on the LCD |
+| 13 | 13_selftest | Walks every output and reports PASS or FAIL on the terminal |
 
 Programs 12 and 13 are the ones most likely to trigger `L250`. If they do,
 enable the LX51 linker with `REMOVEUNUSED` as described in `LAPTOP_SETUP.md`,
