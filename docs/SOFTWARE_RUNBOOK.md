@@ -109,6 +109,50 @@ Program Size: data=30.0 xdata=0 code=1129
 - [ ] Look at `firmware\keil\Objects\01_led_blink.hex`. It exists. That is a
       program that can go into a chip.
 
+#### If the folder has `.obj`, `.lnp`, `exp1` but no `.hex`
+
+This is the most common thing to get wrong, and it looks like success. The
+objects folder fills up, every file has a green tick, and not one of them can be
+flashed. **Only a `.hex` can go into a chip.**
+
+| File you see | What it is | Flashes? |
+|---|---|---|
+| `01_led_blink.obj` | compiler output, relocatable object | no |
+| `exp1` (no extension, about 22 KB) | the linked absolute program, OMF-51 format | no |
+| `exp1.lnp` | the linker's input list | no |
+| `exp1.SBR` | linker symbol file | no |
+| `exp1.build_log` | the build log as HTML | no |
+| `01_led_blink.hex` | **the only flashable file** | yes |
+
+The cause is almost always one tick box. Fix it in five steps:
+
+1. `Project` then `Options for Target` (or press `Alt+F7`).
+2. Open the **Output** tab.
+3. Tick **Create HEX File**. Confirm the format is Intel HEX, not OMF.
+4. While you are there, set **Name of Executable** to the program name,
+   `01_led_blink`, so the HEX is self describing instead of `exp1.hex`.
+5. `OK`, then `Project` then **Rebuild all target files** (`F7`). A plain Build
+   after changing this box is enough, but Rebuild removes any doubt.
+
+If it is already ticked and there is still no HEX, check in this order:
+
+- **Did the link fail?** Open `exp1.build_log`. A program over 2048 bytes gives
+  `FATAL ERROR L250`, and no HEX is produced. That is section 3.1.
+- **Is the output folder somewhere else?** `Options for Target > Output >
+  Select Folder for Objects`. Or just search for it:
+  `dir /s /b C:\8051lab\*.hex`.
+- **Is this your own `exp1` project?** The repository already ships 26 working
+  projects in `firmware\keil\`, one per program, with the HEX output already
+  switched on. Opening `01_led_blink_AT89S52.uvprojx` is faster than fixing a
+  hand made `exp1` project.
+
+Then check the file is real before you trust it: first line starts
+`:0300000002`, last line is exactly `:00000001FF`.
+
+Note for git: `.obj`, `.lnp`, `.SBR`, `.build_log` and `exp1` are build
+intermediates and are already ignored. Only the `.hex` files belong in
+`firmware/hex/`.
+
 **If you got `FATAL ERROR L250: CODE SIZE LIMIT ... LIMIT: 0800H BYTES`** you
 picked a big program by accident, or your Keil is the free version and the program
 is genuinely over 2048 bytes. That is Section 3's job.
